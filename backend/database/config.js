@@ -69,7 +69,3 @@ const getDatabaseConfig = () => {
 };
 
 module.exports = getDatabaseConfig();
-
-if (require.main === module) {
-    console.log(getDatabaseConfig());
-}
