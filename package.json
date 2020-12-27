@@ -15,7 +15,7 @@
     "dbup": "mkdir -p backend/database/migrations && docker-compose up template_database_up",
     "dbdown": "mkdir -p backend/database/migrations && docker-compose up template_database_down",
     "dbcreate": "cd backend/database && node bin/createMigration.js",
-    "preinstall": "husky install"
+    "postinstall": "husky install"
   },
   "devDependencies": {
     "eslint": "^7.16.0",
