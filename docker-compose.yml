@@ -60,6 +60,14 @@ services:
         ports:
             - 10000:3000
 
+    template_backend_deployment:
+        container_name: 'template_backend'
+        build:
+            context: ./backend
+            target: be-deployment
+        ports:
+            - 10000:3000
+
 # Allow container to maintain proper node_modules
 volumes:
   be-reserved:
