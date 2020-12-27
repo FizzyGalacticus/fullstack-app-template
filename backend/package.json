@@ -1,5 +1,5 @@
 {
-  "name": "qrfindr-be",
+  "name": "fullstack-app-template-be",
   "version": "1.0.0",
   "main": "app/app.js",
   "author": "Dustin L. Dodson",
