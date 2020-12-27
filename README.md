@@ -1,2 +1,2 @@
-# qrfindr
-Keep track of your things, with QR codes!
+# Fullstack App Template
+A template for a fullstack app using Fastify, Postgres, and React.
