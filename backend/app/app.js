@@ -5,7 +5,7 @@ const path = require('path');
 
 const fastify = require('fastify')();
 
-const logger = require('../../shared/util/logger');
+const logger = console;
 
 const routesPath = path.join(__dirname, 'routes');
 

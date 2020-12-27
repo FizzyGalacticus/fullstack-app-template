@@ -10,7 +10,13 @@ const main = async () => {
 
     const gitStatus = await git.status();
 
-    const staged = gitStatus.staged;
+    const staged = gitStatus.files.reduce((acc, file) => {
+        if (file.index !== 'D') {
+            acc.push(file.path);
+        }
+
+        return acc;
+    }, []);
 
     let lintResults = await eslint.lintFiles(staged);
 
@@ -19,7 +25,7 @@ const main = async () => {
     lintResults = await eslint.lintFiles(staged);
 
     const errors = lintResults.reduce((acc, r) => {
-        if (r.errorCount) {
+        if (r.filePath.endsWith('.js') && r.errorCount) {
             acc.push(...r.messages.map(m => JSON.stringify(m)));
         }
 
