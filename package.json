@@ -8,6 +8,8 @@
   "license": "Apache2.0",
   "private": true,
   "scripts": {
+    "db": "docker-compose up -d qrfindr_database",
+    "start-be": "npm run db && docker-compose up qrfindr_backend",
     "dbup": "mkdir -p backend/database/migrations && docker-compose up qrfindr_database_up",
     "dbdown": "mkdir -p backend/database/migrations && docker-compose up qrfindr_database_down",
     "dbcreate": "cd backend/database && node bin/createMigration.js"

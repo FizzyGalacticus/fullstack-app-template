@@ -7,32 +7,32 @@ WORKDIR /var/app
 
 RUN npm i -g yarn
 
-COPY backend/package.json backend/yarn.lock /var/app/
+COPY package.json yarn.lock /var/app/
 
-# <--------------STAGE--------------> Deployment
-FROM qrfindr-be as deployment
+# <--------------STAGE--------------> BE Deployment
+FROM qrfindr-be as be-deployment
 
-COPY backend/app /var/app/app
+COPY app /var/app/app
 
 RUN yarn install --production=true
 
 CMD ["yarn","start"]
 
-# <--------------STAGE--------------> Development
-FROM qrfindr-be as development
+# <--------------STAGE--------------> BE Development
+FROM qrfindr-be as be-development
 
 RUN npm i -g nodemon
 
-COPY backend/app /var/app/app
+COPY app /var/app/app
 
 RUN yarn
 
-CMD ["nodemon", "start"]
+CMD ["npm", "run", "dev"]
 
-# <--------------STAGE--------------> Development
+# <--------------STAGE--------------> DB Migrations
 FROM qrfindr-be as db-migrations
 
-COPY backend/database /var/app/
+COPY database /var/app/
 
 RUN yarn
 

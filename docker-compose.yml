@@ -4,7 +4,7 @@ services:
     qrfindr_database:
         container_name: 'qrfindr_database'
         build:
-            context: .
+            context: ./backend
             target: qrfindr-be-blank-db
             args:
                 - DB_USER=qrfindr
@@ -20,7 +20,7 @@ services:
     qrfindr_database_up:
         container_name: 'qrfindr_database_up'
         build:
-            context: .
+            context: ./backend
             target: db-migrations
         environment:
             - DB_USER=qrfindr
@@ -36,7 +36,7 @@ services:
     qrfindr_database_down:
         container_name: 'qrfindr_database_down'
         build:
-            context: .
+            context: ./backend
             target: db-migrations
         environment:
             - DB_USER=qrfindr
@@ -48,6 +48,22 @@ services:
             - ./backend/database/lib:/var/app/lib
             - ./backend/database/bin:/var/app/bin
         command: "yarn dbdown"
+
+    qrfindr_backend:
+        container_name: 'qrfindr_backend'
+        build:
+            context: ./backend
+            target: be-development
+        volumes:
+            - be-reserved:/var/app/node_modules
+            - ./backend/app:/var/app/app
+        ports:
+            - 10000:3000
+
+# Allow container to maintain proper node_modules
+volumes:
+  be-reserved:
+    name: qrfindr_be_node_modules
 
 networks:
   qrfindr:
