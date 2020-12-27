@@ -1,0 +1,54 @@
+version: '3.7'
+
+services:
+    qrfindr_database:
+        container_name: 'qrfindr_database'
+        build:
+            context: .
+            target: qrfindr-be-blank-db
+            args:
+                - DB_USER=qrfindr
+                - DB_PASS=qrfindr
+                - DB_NAME=qrfindr
+        environment:
+            PGDATA: /var/lib/postgresql/data/pgdata
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data/pgdata
+        ports:
+            - 10001:5432
+
+    qrfindr_database_up:
+        container_name: 'qrfindr_database_up'
+        build:
+            context: .
+            target: db-migrations
+        environment:
+            - DB_USER=qrfindr
+            - DB_PASS=qrfindr
+            - DB_NAME=qrfindr
+            - DB_HOST=qrfindr_database
+        volumes:
+            - ./backend/database/migrations:/var/app/migrations
+            - ./backend/database/lib:/var/app/lib
+            - ./backend/database/bin:/var/app/bin
+        command: "yarn dbup"
+
+    qrfindr_database_down:
+        container_name: 'qrfindr_database_down'
+        build:
+            context: .
+            target: db-migrations
+        environment:
+            - DB_USER=qrfindr
+            - DB_PASS=qrfindr
+            - DB_NAME=qrfindr
+            - DB_HOST=qrfindr_database
+        volumes:
+            - ./backend/database/migrations:/var/app/migrations
+            - ./backend/database/lib:/var/app/lib
+            - ./backend/database/bin:/var/app/bin
+        command: "yarn dbdown"
+
+networks:
+  qrfindr:
+    name: qrfindr

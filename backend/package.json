@@ -1,0 +1,16 @@
+{
+  "name": "qrfindr-be",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Dustin L. Dodson",
+  "license": "Apache2.0",
+  "private": true,
+  "scripts": {
+    "dbup": "db-migrate --config config.js up",
+    "dbdown": "db-migrate --config config.js down"
+  },
+  "devDependencies": {
+    "db-migrate": "^1.0.0-beta.14",
+    "db-migrate-pg": "^1.2.2"
+  }
+}
