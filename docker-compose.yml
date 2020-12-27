@@ -1,15 +1,15 @@
 version: '3.7'
 
 services:
-    qrfindr_database:
-        container_name: 'qrfindr_database'
+    template_database:
+        container_name: 'template_database'
         build:
             context: ./backend
-            target: qrfindr-be-blank-db
+            target: template-be-blank-db
             args:
-                - DB_USER=qrfindr
-                - DB_PASS=qrfindr
-                - DB_NAME=qrfindr
+                - DB_USER=template
+                - DB_PASS=template
+                - DB_NAME=template
         environment:
             PGDATA: /var/lib/postgresql/data/pgdata
         volumes:
@@ -17,40 +17,40 @@ services:
         ports:
             - 10001:5432
 
-    qrfindr_database_up:
-        container_name: 'qrfindr_database_up'
+    template_database_up:
+        container_name: 'template_database_up'
         build:
             context: ./backend
             target: db-migrations
         environment:
-            - DB_USER=qrfindr
-            - DB_PASS=qrfindr
-            - DB_NAME=qrfindr
-            - DB_HOST=qrfindr_database
+            - DB_USER=template
+            - DB_PASS=template
+            - DB_NAME=template
+            - DB_HOST=template_database
         volumes:
             - ./backend/database/migrations:/var/app/migrations
             - ./backend/database/lib:/var/app/lib
             - ./backend/database/bin:/var/app/bin
         command: "yarn dbup"
 
-    qrfindr_database_down:
-        container_name: 'qrfindr_database_down'
+    template_database_down:
+        container_name: 'template_database_down'
         build:
             context: ./backend
             target: db-migrations
         environment:
-            - DB_USER=qrfindr
-            - DB_PASS=qrfindr
-            - DB_NAME=qrfindr
-            - DB_HOST=qrfindr_database
+            - DB_USER=template
+            - DB_PASS=template
+            - DB_NAME=template
+            - DB_HOST=template_database
         volumes:
             - ./backend/database/migrations:/var/app/migrations
             - ./backend/database/lib:/var/app/lib
             - ./backend/database/bin:/var/app/bin
         command: "yarn dbdown"
 
-    qrfindr_backend:
-        container_name: 'qrfindr_backend'
+    template_backend:
+        container_name: 'template_backend'
         build:
             context: ./backend
             target: be-development
@@ -63,8 +63,8 @@ services:
 # Allow container to maintain proper node_modules
 volumes:
   be-reserved:
-    name: qrfindr_be_node_modules
+    name: template_be_node_modules
 
 networks:
-  qrfindr:
-    name: qrfindr
+  template:
+    name: template
