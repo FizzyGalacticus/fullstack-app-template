@@ -13,11 +13,14 @@
     "start-be": "npm run db && docker-compose up qrfindr_backend",
     "dbup": "mkdir -p backend/database/migrations && docker-compose up qrfindr_database_up",
     "dbdown": "mkdir -p backend/database/migrations && docker-compose up qrfindr_database_down",
-    "dbcreate": "cd backend/database && node bin/createMigration.js"
+    "dbcreate": "cd backend/database && node bin/createMigration.js",
+    "preinstall": "husky install"
   },
   "devDependencies": {
     "eslint": "^7.16.0",
     "eslint-plugin-prettier": "^3.3.0",
-    "prettier": "^2.2.1"
+    "husky": "^5.0.6",
+    "prettier": "^2.2.1",
+    "simple-git": "^2.31.0"
   }
 }
