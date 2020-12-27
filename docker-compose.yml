@@ -1,0 +1,78 @@
+version: '3.7'
+
+services:
+    template_database:
+        container_name: 'template_database'
+        build:
+            context: ./backend
+            target: template-be-blank-db
+            args:
+                - DB_USER=template
+                - DB_PASS=template
+                - DB_NAME=template
+        environment:
+            PGDATA: /var/lib/postgresql/data/pgdata
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data/pgdata
+        ports:
+            - 10001:5432
+
+    template_database_up:
+        container_name: 'template_database_up'
+        build:
+            context: ./backend
+            target: db-migrations
+        environment:
+            - DB_USER=template
+            - DB_PASS=template
+            - DB_NAME=template
+            - DB_HOST=template_database
+        volumes:
+            - ./backend/database/migrations:/var/app/migrations
+            - ./backend/database/lib:/var/app/lib
+            - ./backend/database/bin:/var/app/bin
+        command: "yarn dbup"
+
+    template_database_down:
+        container_name: 'template_database_down'
+        build:
+            context: ./backend
+            target: db-migrations
+        environment:
+            - DB_USER=template
+            - DB_PASS=template
+            - DB_NAME=template
+            - DB_HOST=template_database
+        volumes:
+            - ./backend/database/migrations:/var/app/migrations
+            - ./backend/database/lib:/var/app/lib
+            - ./backend/database/bin:/var/app/bin
+        command: "yarn dbdown"
+
+    template_backend:
+        container_name: 'template_backend'
+        build:
+            context: ./backend
+            target: be-development
+        volumes:
+            - be-reserved:/var/app/node_modules
+            - ./backend/app:/var/app/app
+        ports:
+            - 10000:3000
+
+    template_backend_deployment:
+        container_name: 'template_backend'
+        build:
+            context: ./backend
+            target: be-deployment
+        ports:
+            - 10000:3000
+
+# Allow container to maintain proper node_modules
+volumes:
+  be-reserved:
+    name: template_be_node_modules
+
+networks:
+  template:
+    name: template
