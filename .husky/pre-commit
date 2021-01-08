@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname $0)/_/husky.sh"
 
-npx fizzygalacticus-pre-commit-lint
+node node_modules/.bin/fizzygalacticus-pre-commit-lint
