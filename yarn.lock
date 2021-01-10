@@ -39,6 +39,13 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fizzygalacticus/pre-commit-lint@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@fizzygalacticus/pre-commit-lint/-/pre-commit-lint-0.1.0.tgz#037a69ae7f10ef961978c182b52d8b9fc1335239"
+  integrity sha512-QtfwM1Fbll+zMOTugVjtG4hJWt8PaIaJj5FlmxJtRuP80Lwrggm1IP+9WHDEh7zBz84HP1c6TjEdUO8lbVu2jQ==
+  dependencies:
+    simple-git "^2.31.0"
+
 "@kwsites/file-exists@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@kwsites/file-exists/-/file-exists-1.1.1.tgz#ad1efcac13e1987d8dbaf235ef3be5b0d96faa99"
