@@ -68,11 +68,28 @@ services:
         ports:
             - 10000:3000
 
+    template_frontend:
+        container_name: 'template_frontend'
+        build:
+            context: ./frontend
+            target: fe-development
+        volumes:
+            - ./frontend:/var/app/
+            - fe-reserved-nm:/var/app/node_modules
+            - fe-reserved-dist:/var/app/dist
+        ports:
+            - 10001:1234
+            - 10002:10002
+
 # Allow container to maintain proper node_modules
 volumes:
   be-reserved:
     name: template_be_node_modules
+  fe-reserved-nm:
+    name: template_fe_node_modules
+  fe-reserved-dist:
+    name: template_fe_dist
 
 networks:
-  template:
-    name: template
+  full_stack_template:
+    name: full_stack_template

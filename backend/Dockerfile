@@ -36,7 +36,7 @@ COPY app /var/app/app
 
 RUN yarn
 
-CMD ["npm", "run", "dev"]
+CMD ["dev", "dev"]
 
 # <--------------STAGE--------------> DB Migrations
 FROM template-be as db-migrations

@@ -1,0 +1,18 @@
+{
+  "name": "fullstack-app-template-fe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Dustin L. Dodson",
+  "license": "Apache2.0",
+  "private": false,
+  "scripts": {
+    "start": "echo 'No start command available yet'",
+    "dev": "parcel src/index.html -d /tmp/fe-dist --cache-dir /tmp/fe-cache --hmr-port 10002"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.1",
+    "parcel-bundler": "^1.12.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
