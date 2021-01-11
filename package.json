@@ -10,8 +10,9 @@
   "scripts": {
     "lint": "eslint --fix .",
     "db": "docker-compose up -d template_database",
-    "start-be": "npm run db && docker-compose up template_backend",
-    "dev": "npm run start-be",
+    "start-be": "npm run db && docker-compose up -d template_backend",
+    "start-fe": "docker-compose up -d template_frontend",
+    "dev": "npm run start-be && npm run start-fe",
     "dbup": "mkdir -p backend/database/migrations && docker-compose up template_database_up",
     "dbdown": "mkdir -p backend/database/migrations && docker-compose up template_database_down",
     "dbcreate": "cd backend/database && node bin/createMigration.js",
