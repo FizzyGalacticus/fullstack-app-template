@@ -2,6 +2,6 @@
 
 import React from 'react';
 
-const App = () => <div>Hello, React!</div>;
+const App = () => <div className="container mx-auto">Hello, React!</div>;
 
 export default App;

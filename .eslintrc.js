@@ -102,7 +102,7 @@ module.exports = {
     },
     settings: {
         react: {
-            version: frontendPkg.devDependencies.react,
+            version: frontendPkg.dependencies.react,
         },
     },
 };
