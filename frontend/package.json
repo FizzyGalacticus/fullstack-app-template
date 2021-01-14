@@ -5,6 +5,7 @@
   "author": "Dustin L. Dodson",
   "license": "Apache2.0",
   "private": false,
+  "type": "module",
   "scripts": {
     "start": "echo 'No start command available yet'",
     "dev": "parcel src/index.html --dist-dir /tmp/fe-dist --cache-dir /tmp/fe-cache --hmr-port 10002"

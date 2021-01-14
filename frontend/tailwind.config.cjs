@@ -1,8 +1,6 @@
-'use strict';
+import colors from 'tailwindcss/colors';
 
-const colors = require('tailwindcss/colors');
-
-module.exports = {
+export default {
     purge: ['./src/**/*.{js,jsx,ts,tsx}', './src/index.html'],
     presets: [],
     darkMode: false, // or 'media' or 'class'
