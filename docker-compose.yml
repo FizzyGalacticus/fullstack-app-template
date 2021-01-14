@@ -1,6 +1,15 @@
 version: '3.7'
 
 services:
+    portainer:
+        image: portainer/portainer:alpine
+        ports:
+            - 9998:9000
+            - 9999:8000
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        command: --no-auth
+
     template_database:
         container_name: 'template_database'
         build:
@@ -15,7 +24,7 @@ services:
         volumes:
             - ./pgdata:/var/lib/postgresql/data/pgdata
         ports:
-            - 10001:5432
+            - 10000:5432
 
     template_database_up:
         container_name: 'template_database_up'
@@ -58,7 +67,7 @@ services:
             - be-reserved:/var/app/node_modules
             - ./backend/app:/var/app/app
         ports:
-            - 10000:3000
+            - 10001:3000
 
     template_backend_deployment:
         container_name: 'template_backend'
@@ -66,13 +75,30 @@ services:
             context: ./backend
             target: be-deployment
         ports:
-            - 10000:3000
+            - 10001:3000
+
+    template_frontend:
+        container_name: 'template_frontend'
+        build:
+            context: ./frontend
+            target: fe-development
+        volumes:
+            - ./frontend:/var/app/
+            - fe-reserved-nm:/var/app/node_modules
+            - fe-reserved-dist:/var/app/dist
+        ports:
+            - 10002:1234
+            - 10003:10003
 
 # Allow container to maintain proper node_modules
 volumes:
   be-reserved:
     name: template_be_node_modules
+  fe-reserved-nm:
+    name: template_fe_node_modules
+  fe-reserved-dist:
+    name: template_fe_dist
 
 networks:
-  template:
-    name: template
+  full_stack_template:
+    name: full_stack_template

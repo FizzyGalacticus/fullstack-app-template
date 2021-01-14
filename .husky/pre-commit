@@ -1,4 +1,13 @@
 #!/bin/sh
 . "$(dirname $0)/_/husky.sh"
 
+# Prevent commits to master
+branch="$(git rev-parse --abbrev-ref HEAD)"
+
+if [ "$branch" = "master" ]; then
+  echo -e "I can't let you do that Starfox...\nCommits to master are strictly prohibited"
+  exit 1
+fi
+
+# Lint & add files back to staging
 node node_modules/.bin/fizzygalacticus-pre-commit-lint

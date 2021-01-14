@@ -4,7 +4,7 @@
   "main": "app/app.js",
   "author": "Dustin L. Dodson",
   "license": "Apache2.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "node app/app.js",
     "dev": "nodemon",

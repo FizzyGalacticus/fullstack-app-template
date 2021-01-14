@@ -1,5 +1,10 @@
+'use strict';
+
+const frontendPkg = require('./frontend/package.json');
+
 module.exports = {
     env: {
+        browser: true,
         node: true,
         es6: true,
     },
@@ -10,7 +15,8 @@ module.exports = {
             impliedStrict: true,
         },
     },
-    plugins: ['prettier'],
+    plugins: ['react', 'react-hooks', 'babel', 'prettier'],
+    parser: 'babel-eslint',
     rules: {
         'block-scoped-var': 2,
         'brace-style': 2,
@@ -85,5 +91,18 @@ module.exports = {
                 endOfLine: 'auto',
             },
         ],
+        'react/jsx-uses-react': 2,
+        'react/jsx-uses-vars': 2,
+        'react/jsx-key': 2,
+        'react/no-danger': 2,
+        'react/no-deprecated': 0,
+        'react/no-direct-mutation-state': 2,
+        'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+        'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
+    },
+    settings: {
+        react: {
+            version: frontendPkg.dependencies.react,
+        },
     },
 };

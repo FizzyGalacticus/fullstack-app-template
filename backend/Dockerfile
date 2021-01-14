@@ -30,7 +30,9 @@ CMD ["start"]
 # <--------------STAGE--------------> BE Development
 FROM template-be as be-development
 
+USER root
 RUN npm i -g nodemon
+USER nonroot
 
 COPY app /var/app/app
 
