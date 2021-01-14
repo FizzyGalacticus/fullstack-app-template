@@ -24,7 +24,7 @@ services:
         volumes:
             - ./pgdata:/var/lib/postgresql/data/pgdata
         ports:
-            - 10001:5432
+            - 10000:5432
 
     template_database_up:
         container_name: 'template_database_up'
@@ -67,7 +67,7 @@ services:
             - be-reserved:/var/app/node_modules
             - ./backend/app:/var/app/app
         ports:
-            - 10000:3000
+            - 10001:3000
 
     template_backend_deployment:
         container_name: 'template_backend'
@@ -75,7 +75,7 @@ services:
             context: ./backend
             target: be-deployment
         ports:
-            - 10000:3000
+            - 10001:3000
 
     template_frontend:
         container_name: 'template_frontend'
@@ -87,8 +87,8 @@ services:
             - fe-reserved-nm:/var/app/node_modules
             - fe-reserved-dist:/var/app/dist
         ports:
-            - 10001:1234
-            - 10002:10002
+            - 10002:1234
+            - 10003:10003
 
 # Allow container to maintain proper node_modules
 volumes:
