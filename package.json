@@ -1,7 +1,7 @@
 {
   "name": "fullstack-app-template",
   "version": "1.0.0",
-  "description": "Keep track of your things, with QR codes!",
+  "description": "",
   "main": "index.js",
   "repository": "https://github.com/FizzyGalacticus/fullstack-app-template",
   "author": "Dustin L. Dodson <dustinleedodson@gmail.com>",
