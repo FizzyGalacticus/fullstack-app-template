@@ -4,6 +4,20 @@ const fs = require('fs');
 const path = require('path');
 
 const fastify = require('fastify')();
+const fastifyCORS = require('fastify-cors');
+
+fastify.register(fastifyCORS, {
+    origin: (origin, cb) => {
+        if (/localhost/.test(origin)) {
+            //  Request from localhost will pass
+            cb(null, true);
+            return;
+        }
+
+        // Generate an error on other origins, disabling access
+        cb(new Error('Not allowed'));
+    },
+});
 
 const logger = console;
 

@@ -8,6 +8,11 @@ const routes = [
         url: '/',
         handler: controller.home,
     },
+    {
+        method: 'POST',
+        url: '/',
+        handler: controller.home,
+    },
 ];
 
 module.exports = routes;

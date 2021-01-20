@@ -2,8 +2,14 @@
 
 module.exports = {
     home: req => {
-        const { query: { name } = {} } = req;
+        const { query: { name } = {}, body } = req;
 
-        return ['Hello', name].filter(s => s).join(', ') + '!';
+        let ret = ['Hello', name, 'from the API server'].filter(s => s).join(', ') + '!';
+
+        if (body) {
+            ret = [ret, `You sent me a body: '${body}'`].join(' ');
+        }
+
+        return ret;
     },
 };
