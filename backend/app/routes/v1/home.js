@@ -4,12 +4,7 @@ const controller = require('../../controllers/v1/home');
 
 const routes = [
     {
-        method: 'GET',
-        url: '/',
-        handler: controller.home,
-    },
-    {
-        method: 'POST',
+        method: ['GET', 'POST'],
         url: '/',
         handler: controller.home,
     },
