@@ -13,7 +13,7 @@
   "dependencies": {
     "autoprefixer": "^10.2.1",
     "parcel": "^2.0.0-nightly.527",
-    "postcss": "^8.2.4",
+    "postcss": "^8.2.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "tailwindcss": "^2.0.2"
