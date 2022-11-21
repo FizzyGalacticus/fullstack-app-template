@@ -16,7 +16,7 @@
     "db-migrate-pg": "^1.2.2"
   },
   "dependencies": {
-    "fastify": "^3.9.2",
+    "fastify": "^3.29.4",
     "fastify-cors": "^5.1.0"
   }
 }
